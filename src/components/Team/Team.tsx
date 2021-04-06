@@ -7,7 +7,7 @@ import { request } from 'graphql-request';
 // TODO: (can be separate PR), have an archive of old exec
 
 function Team() {
-  const [team, setTeam] = useState([]);
+  const [team, setTeam] = useState<any[]>([]);
   
   useEffect(() => {
     const fetchTeam = async () => {
@@ -35,9 +35,11 @@ function Team() {
 
   return (
     <div>
-      <h4>The best work...</h4>
-      <p>Our leadership team...</p>
+      <h4>The best work is produced when diverse voices help create it.</h4>
+      <p>Our leadership team works together to disrupt the image of stereotypical programmer. Meet our wave-makers!</p>
       {/* iterate through team for the profile. hint: console.log() to see what the data structure looks like and how you can use it */}
+      {console.log(team[0].name + "test")}
+      {team.map(mem => <Profile name={mem.name} img={mem.headshot.url} position={mem.position}></Profile>)}
       <Profile name="Emily" img="" position="President" />
     </div>
   );
