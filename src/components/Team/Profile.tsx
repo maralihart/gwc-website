@@ -9,7 +9,7 @@ interface Props {
 function Profile(props: Props) {
   return (
     <div>
-      <img src="#" alt={`Headshot of ${props.name}`} />
+      <img src={props.img} alt={`Headshot of ${props.name}`} />
       <h6>{props.name}</h6>
       <p>{props.position}</p>
     </div>
