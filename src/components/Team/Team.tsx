@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Profile from './Profile';
 import { request } from 'graphql-request';
+import { createExpressionWithTypeArguments, transpileModule } from 'typescript';
 
 // TODO: Make a profile component with photo, name, position
 // TODO: Add beginning copy
@@ -8,6 +9,7 @@ import { request } from 'graphql-request';
 
 function Team() {
   const [team, setTeam] = useState<any[]>([]);
+  var arrays: any[][] = [];
   
   useEffect(() => {
     const fetchTeam = async () => {
@@ -31,6 +33,19 @@ function Team() {
     };
 
     fetchTeam();
+
+    for(let i = 0; i<6; i+=3) {
+      arrays.push(team.slice(i, i+3))
+    }
+    /*while (team.length > 2) {
+      arrays.push(team.splice(0, 3));
+    }*/
+    console.log("hi");
+    for(var i = 0; i<arrays.length; i++) {
+      for(var j = 0; j<arrays[0].length; j++) {
+          console.log(arrays[i][j].name);
+      }
+    }
   }, []);
 
   return (
@@ -40,6 +55,13 @@ function Team() {
       {/* iterate through team for the profile. hint: console.log() to see what the data structure looks like and how you can use it */}
       {console.log(team[0] + "test")}
       {team.map(mem => <Profile name={mem.name} img={mem.headshot.url} position={mem.position}></Profile>)}
+      {arrays.map(mem => 
+        <div className="picrow">
+          <Profile name={mem[0].name} img={mem[0].headshot.url} position={mem[0].position}></Profile>
+          <Profile name={mem[1].name} img={mem[1].headshot.url} position={mem[1].position}></Profile>
+          <Profile name={mem[2].name} img={mem[2].headshot.url} position={mem[2].position}></Profile>
+        </div>
+      )}
       <Profile name="Emily" img="" position="President" />
     </div>
   );
