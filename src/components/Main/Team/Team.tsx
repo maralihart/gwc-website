@@ -34,18 +34,25 @@ function Team() {
 
     fetchTeam();
 
-    for(let i = 0; i<6; i+=3) {
-      arrays.push(team.slice(i, i+3))
+    /*var count = 0;
+    for(let i = 0; i<team.length-(team.length%3); i+=3) {
+      arrays[count] = [team[i],team[i+1],team[i+2]];
+      count++;
+      //arrays.push(team.slice(i, i+3))
     }
-    /*while (team.length > 2) {
+    while (team.length > 2) {
       arrays.push(team.splice(0, 3));
-    }*/
-    console.log("hi");
+    }
+    console.log("hi" + arrays.length);
     for(var i = 0; i<arrays.length; i++) {
       for(var j = 0; j<arrays[0].length; j++) {
+        if(arrays[i][j])
           console.log(arrays[i][j].name);
+          //console.log("i: " + i + "j: " + j);
+          //console.log("");
       }
     }
+    console.log("we up here" + arrays.length)*/
 
     //Turn titles into proper ones
     //Ternary conditionals ^ use for above
@@ -60,18 +67,40 @@ function Team() {
     */
     }, []);
 
+    var count = 0;
+    for(let i = 0; i<team.length-(team.length%3); i+=3) {
+      arrays[count] = [team[i],team[i+1],team[i+2]];
+      count++;
+      //arrays.push(team.slice(i, i+3))
+    }
+    var arrleft = [];
+    for(let i = team.length-(team.length%3); i<team.length; i++) {
+      arrleft.push(team[i]);
+    }
+    console.log(arrays.length);
+
   return (
     <div>
-      <h4>The best work is produced when diverse voices help create it.</h4>
-      <p>Our leadership team works together to disrupt the image of stereotypical programmer. Meet our wave-makers!</p>
+      <h3 className="text-peacock font-weight-bold">The best work is produced when diverse voices help create it.</h3>
+      <p className="text-peacock">Our leadership team works together to disrupt the image of stereotypical programmer. Meet our wave-makers!</p>
       {/* iterate through team for the profile. hint: console.log() to see what the data structure looks like and how you can use it */}
       {console.log(team[0] + "test")}
-      {team.map(mem => <Profile name={mem.name} img={mem.headshot.url} position={mem.position}></Profile>)}
+      {/*team.map(mem => <Profile name={mem.name} img={mem.headshot.url} position={mem.position}></Profile>)*/}
+      {console.log(arrays.length)}
       {arrays.map(mem => 
-        <div className="row">
-          <Profile name={mem[0].name} img={mem[0].headshot.url} position={mem[0].position}></Profile>
-          <Profile name={mem[1].name} img={mem[1].headshot.url} position={mem[1].position}></Profile>
-          <Profile name={mem[2].name} img={mem[2].headshot.url} position={mem[2].position}></Profile>
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <Profile name={mem[0].name} img={mem[0].headshot.url} position={mem[0].position}></Profile>
+              {console.log("reached")}
+            </div>
+            <div className="col">
+              <Profile name={mem[1].name} img={mem[1].headshot.url} position={mem[1].position}></Profile>
+            </div>
+            <div className="col">
+              <Profile name={mem[2].name} img={mem[2].headshot.url} position={mem[2].position}></Profile>
+            </div>
+          </div>
         </div>
       )}
     </div>
