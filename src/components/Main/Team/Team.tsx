@@ -81,7 +81,7 @@ function Team() {
 
   return (
     <div>
-      <h3 className="text-peacock font-weight-bold">The best work is produced when diverse voices help create it.</h3>
+      <h4 className="text-peacock font-weight-bold">The best work is produced when diverse voices help create it.</h4>
       <p className="text-peacock">Our leadership team works together to disrupt the image of stereotypical programmer. Meet our wave-makers!</p>
       {/* iterate through team for the profile. hint: console.log() to see what the data structure looks like and how you can use it */}
       {console.log(team[0] + "test")}
