@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Profile from './Profile';
 import { request } from 'graphql-request';
-import { createExpressionWithTypeArguments, transpileModule } from 'typescript';
+import { createExpressionWithTypeArguments, isPropertySignature, transpileModule } from 'typescript';
+import { printIntrospectionSchema } from 'graphql';
 
 // TODO: Make a profile component with photo, name, position
 // TODO: Add beginning copy
 // TODO: (can be separate PR), have an archive of old exec
+interface Props {
+  id: string;
+}
 
-function Team() {
+function Team(props: Props) {
   const [team, setTeam] = useState<any[]>([]);
   var arrays: any[][] = [];
   
@@ -80,7 +84,7 @@ function Team() {
     console.log(arrays.length);
 
   return (
-    <div>
+    <div id={props.id}>
       <h4 className="text-peacock font-weight-bold">The best work is produced when diverse voices help create it.</h4>
       <p className="text-peacock">Our leadership team works together to disrupt the image of stereotypical programmer. Meet our wave-makers!</p>
       {/* iterate through team for the profile. hint: console.log() to see what the data structure looks like and how you can use it */}
